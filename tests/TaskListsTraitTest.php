@@ -2,26 +2,13 @@
 
 namespace Kirra\Markdown\Tests;
 
+use cebe\markdown\block\ListTrait;
 use cebe\markdown\Markdown;
+use cebe\markdown\Parser;
 use Kirra\Markdown\TaskListsTrait;
 use PHPUnit\Framework\TestCase;
 
 class TaskListsTraitTest extends TestCase {
-	/**
-	 * A parser using the trait.
-	 * @since $ver$
-	 * @var TestParser
-	 */
-	private $parser;
-
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function setUp() {
-		parent::setUp();
-		$this->parser = new TestParser();
-	}
-
 	/**
 	 * Data provider for {@see self::testParse}.
 	 * @since $ver$
@@ -30,11 +17,23 @@ class TaskListsTraitTest extends TestCase {
 	public function dataProviderForTestParse() {
 		return [
 			'Open checkbox' => ['- [ ] Open', "<ul>\n<li><input type=\"checkbox\" disabled> Open</li>\n</ul>\n"],
-			'Closed checkbox' => ['- [x] Closed', "<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n"],
-			'Closed checkbox Captial X' => ['- [X] Closed', "<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n"],
+			'Closed checkbox' => [
+				'- [x] Closed',
+				"<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n"
+			],
+			'Closed checkbox Captial X' => [
+				'- [X] Closed',
+				"<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n"
+			],
 			'Invalid checkbox' => ['- [*] Closed', "<ul>\n<li>[*] Closed</li>\n</ul>\n"],
-			'with markup' => ['- [ ] **Open**', "<ul>\n<li><input type=\"checkbox\" disabled> <strong>Open</strong></li>\n</ul>\n"],
-			'with link' => ['- [ ] [Open](link)', "<ul>\n<li><input type=\"checkbox\" disabled> <a href=\"link\">Open</a></li>\n</ul>\n"],
+			'with markup' => [
+				'- [ ] **Open**',
+				"<ul>\n<li><input type=\"checkbox\" disabled> <strong>Open</strong></li>\n</ul>\n"
+			],
+			'with link' => [
+				'- [ ] [Open](link)',
+				"<ul>\n<li><input type=\"checkbox\" disabled> <a href=\"link\">Open</a></li>\n</ul>\n"
+			],
 			'without a list' => ['[ ] Open', "<p>[ ] Open</p>\n"],
 		];
 	}
@@ -47,7 +46,7 @@ class TaskListsTraitTest extends TestCase {
 	 * @dataProvider dataProviderForTestParse
 	 */
 	public function testParse($markdown, $result) {
-		$this->assertEquals($result, $this->parser->parse($markdown));
+		$this->assertEquals($result, (new TestParser())->parse($markdown));
 	}
 
 	/**
@@ -55,7 +54,18 @@ class TaskListsTraitTest extends TestCase {
 	 * @since $ver$
 	 */
 	public function testParseParagraph() {
-		$this->assertEquals('- [ ] Open', $this->parser->parseParagraph('- [ ] Open'));
+		$this->assertEquals('- [ ] Open', (new TestParser())->parseParagraph('- [ ] Open'));
+	}
+
+	/**
+	 * Test case to make sure a link isn't parsed without the {@see ListTrait}.
+	 * @since $ver$
+	 */
+	public function testLinkless() {
+		$this->assertEquals(
+			"<ul>\n<li>[Open](link)</li>\n</ul>\n",
+			(new LinklessParser())->parse('- [Open](link)')
+		);
 	}
 }
 
@@ -66,3 +76,12 @@ class TaskListsTraitTest extends TestCase {
 class TestParser extends Markdown {
 	use TaskListsTrait;
 }
+
+/**
+ * Linkless dummy class to test Parser.
+ * @since $ver$
+ */
+class LinklessParser extends Parser {
+	use TaskListsTrait, ListTrait;
+}
+

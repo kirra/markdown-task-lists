@@ -16,15 +16,17 @@ trait TaskListsTrait {
 	 *
 	 * @since $ver$
 	 * @marker [
+	 * @return mixed[] The block configuration.
 	 */
-	protected function parseLink($markdown) {
+	protected function parseLink($markdown): array {
 		$checkbox = substr($markdown, 0, 4);
 		if (!in_array($checkbox, ['[ ] ', '[x] ', '[X] '])) {
 			if (\is_callable(['parent', __FUNCTION__])) {
 				return parent::parseLink($markdown);
 			}
 
-			return $this->parseInline($markdown);
+			// keep the tag, as it should not be parsed.
+			return [['text', '['], 1];
 		}
 
 		return [['checkbox', 'checked' => (stristr($checkbox, 'x') !== false), 'original' => $checkbox], 4];
@@ -36,9 +38,9 @@ trait TaskListsTrait {
 	 * @param array $block The block configuration for the checkbox.
 	 * @return string The checkbox html.
 	 */
-	protected function renderCheckbox(array $block) {
+	protected function renderCheckbox(array $block): string {
 		if (!in_array('list', $this->context)) {
-			return $block['original'];
+			return (string) $block['original'];
 		}
 
 		return sprintf(
