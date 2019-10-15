@@ -9,13 +9,14 @@ namespace Kirra\Markdown;
  */
 trait TaskListsTrait {
 	/**
-	 * {@inheritDoc}
+	 * Parses a task list item.
 	 *
-	 * This parses a checkbox first. This is because the marker phpdoc only takes one function.
+	 * This parses a task list item first. This is because the `@marker` phpdoc only takes one function.
 	 * Make sure to use this trait later then {@see LinkTrait}.
 	 *
 	 * @since $ver$
 	 * @marker [
+	 * @param string $markdown The markdown to parse.
 	 * @return mixed[] The block configuration.
 	 */
 	protected function parseLink($markdown): array {
@@ -44,8 +45,8 @@ trait TaskListsTrait {
 		}
 
 		return sprintf(
-			'<input type="checkbox" disabled%s%s> ',
-			$block['checked'] ? ' checked' : '',
+			'<input type="checkbox" disabled=""%s%s> ',
+			$block['checked'] ? ' checked=""' : '',
 			$this->html5 ? ' /' : ''
 		);
 	}

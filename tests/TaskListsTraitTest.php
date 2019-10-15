@@ -20,23 +20,23 @@ class TaskListsTraitTest extends TestCase {
 	 */
 	public function dataProviderForTestParse(): array {
 		return [
-			'Open checkbox' => ['- [ ] Open', "<ul>\n<li><input type=\"checkbox\" disabled> Open</li>\n</ul>\n"],
+			'Open checkbox' => ['- [ ] Open', "<ul>\n<li><input type=\"checkbox\" disabled=\"\"> Open</li>\n</ul>\n"],
 			'Closed checkbox' => [
 				'- [x] Closed',
-				"<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n",
+				"<ul>\n<li><input type=\"checkbox\" disabled=\"\" checked=\"\"> Closed</li>\n</ul>\n",
 			],
 			'Closed checkbox Captial X' => [
 				'- [X] Closed',
-				"<ul>\n<li><input type=\"checkbox\" disabled checked> Closed</li>\n</ul>\n",
+				"<ul>\n<li><input type=\"checkbox\" disabled=\"\" checked=\"\"> Closed</li>\n</ul>\n",
 			],
 			'Invalid checkbox' => ['- [*] Closed', "<ul>\n<li>[*] Closed</li>\n</ul>\n"],
 			'with markup' => [
 				'- [ ] **Open**',
-				"<ul>\n<li><input type=\"checkbox\" disabled> <strong>Open</strong></li>\n</ul>\n",
+				"<ul>\n<li><input type=\"checkbox\" disabled=\"\"> <strong>Open</strong></li>\n</ul>\n",
 			],
 			'with link' => [
 				'- [ ] [Open](link)',
-				"<ul>\n<li><input type=\"checkbox\" disabled> <a href=\"link\">Open</a></li>\n</ul>\n",
+				"<ul>\n<li><input type=\"checkbox\" disabled=\"\"> <a href=\"link\">Open</a></li>\n</ul>\n",
 			],
 			'without a list' => ['[ ] Open', "<p>[ ] Open</p>\n"],
 		];
