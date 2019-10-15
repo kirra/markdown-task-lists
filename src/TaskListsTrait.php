@@ -35,7 +35,7 @@ trait TaskListsTrait {
 	/**
 	 * Renders a checkbox, but only in a list block.
 	 * @since $ver$
-	 * @param array $block The block configuration for the checkbox.
+	 * @param string[] $block The block configuration for the checkbox.
 	 * @return string The checkbox html.
 	 */
 	protected function renderCheckbox(array $block): string {
