@@ -1,4 +1,6 @@
 # [cebe/markdown] Github Task Lists Support
+[![Build Status](https://travis-ci.com/kirra/markdown-task-lists.svg?branch=master)](https://travis-ci.com/kirra/markdown-task-lists)
+[![Coverage Status](https://coveralls.io/repos/github/kirra/markdown-task-lists/badge.svg?branch=master)](https://coveralls.io/github/kirra/markdown-task-lists?branch=master)
 
 A trait to extend [cebe/markdown] with [Task Lists support].
 
