@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - The `TaskListsTrait` with tests.
 - TravisCI
+- Coveralls
 - [README.md](./README.md) explaining the use.
 
 [Unreleased]: https://github.com/kirra/markdown-task-lists
