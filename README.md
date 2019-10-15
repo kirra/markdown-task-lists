@@ -4,6 +4,13 @@
 
 A trait to extend [cebe/markdown] with [Task Lists support].
 
+## Installation
+PHP 7.1 or higher is required to use it.
+
+```bash
+composer require kirra/markdown-task-lists
+```
+
 ## Usage
 To parse a Task List you need to make your own parser, and let it `use` the [TaskListsTrait].
 

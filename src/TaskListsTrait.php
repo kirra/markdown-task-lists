@@ -5,7 +5,7 @@ namespace Kirra\Markdown;
 /**
  * Adds Github's Task Lists support to a parser.
  * @link https://github.blog/2013-01-09-task-lists-in-gfm-issues-pulls-comments
- * @since $ver$
+ * @since 1.0.0
  */
 trait TaskListsTrait {
 	/**
@@ -14,7 +14,7 @@ trait TaskListsTrait {
 	 * This parses a task list item first. This is because the `@marker` phpdoc only takes one function.
 	 * Make sure to use this trait later then {@see LinkTrait}.
 	 *
-	 * @since $ver$
+	 * @since 1.0.0
 	 * @marker [
 	 * @param string $markdown The markdown to parse.
 	 * @return mixed[] The block configuration.
@@ -35,7 +35,7 @@ trait TaskListsTrait {
 
 	/**
 	 * Renders a checkbox, but only in a list block.
-	 * @since $ver$
+	 * @since 1.0.0
 	 * @param string[] $block The block configuration for the checkbox.
 	 * @return string The checkbox html.
 	 */

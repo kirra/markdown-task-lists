@@ -9,12 +9,12 @@ use Kirra\Markdown\TaskListsTrait;
 
 /**
  * Test class for {@see TaskListTrait}.
- * @since $ver$
+ * @since 1.0.0
  */
 class TaskListsTraitTest extends TestCase {
 	/**
 	 * Data provider for {@see self::testParse}.
-	 * @since $ver$
+	 * @since 1.0.0
 	 * @return mixed[] The provided test data.
 	 */
 	public function dataProviderForTestParse(): array {
@@ -43,7 +43,7 @@ class TaskListsTraitTest extends TestCase {
 
 	/**
 	 * Test case for parsing checkboxes.
-	 * @since $ver$
+	 * @since 1.0.0
 	 * @param string $markdown The markdown to parse.
 	 * @param string $result The expected result.
 	 * @dataProvider dataProviderForTestParse The data provider.
@@ -54,7 +54,7 @@ class TaskListsTraitTest extends TestCase {
 
 	/**
 	 * Test case to make sure inline parsing returns the same code.
-	 * @since $ver$
+	 * @since 1.0.0
 	 */
 	public function testParseParagraph(): void {
 		$this->assertEquals('- [ ] Open', (new TestParser())->parseParagraph('- [ ] Open'));
@@ -62,7 +62,7 @@ class TaskListsTraitTest extends TestCase {
 
 	/**
 	 * Test case to make sure a link isn't parsed without the {@see LinkTrait}.
-	 * @since $ver$
+	 * @since 1.0.0
 	 */
 	public function testLinkless(): void {
 		$this->assertEquals(
@@ -76,7 +76,7 @@ class TaskListsTraitTest extends TestCase {
 
 /**
  * Dummy class to test Parser.
- * @since $ver$
+ * @since 1.0.0
  */
 class TestParser extends Markdown {
 	use TaskListsTrait;
@@ -84,7 +84,7 @@ class TestParser extends Markdown {
 
 /**
  * Linkless dummy class to test Parser.
- * @since $ver$
+ * @since 1.0.0
  */
 class LinklessParser extends Parser {
 	use TaskListsTrait, ListTrait;
