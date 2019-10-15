@@ -6,7 +6,6 @@ use cebe\markdown\block\ListTrait;
 use cebe\markdown\Markdown;
 use cebe\markdown\Parser;
 use Kirra\Markdown\TaskListsTrait;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for {@see TaskListTrait}.
