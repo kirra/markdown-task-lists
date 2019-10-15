@@ -40,7 +40,7 @@ trait TaskListsTrait {
 	 * @return string The checkbox html.
 	 */
 	protected function renderCheckbox(array $block): string {
-		if (!in_array('list', $this->context)) {
+		if (!in_array('list', $this->context, true)) {
 			return (string) $block['original'];
 		}
 
